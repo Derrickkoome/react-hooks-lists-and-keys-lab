@@ -1,14 +1,21 @@
 import React from "react";
 
-function ProjectItem({ name, about, technologies }) {
+function ProjectItem({ title, name, about, image, technologies = [] }) {
+  const displayTitle = name || title;
+
   return (
-    <div className="project-item">
-      <h3>{name}</h3>
+    <article className="project-item">
+      <h3>{displayTitle}</h3>
       <p>{about}</p>
+      {image && <img src={image} alt={displayTitle} />}
       <div className="technologies">
-        {/* render a <span> for each technology in the technologies array */}
+        {technologies.map((tech) => (
+          <span key={tech} className="technology">
+            {tech}
+          </span>
+        ))}
       </div>
-    </div>
+    </article>
   );
 }
 
